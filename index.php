@@ -138,7 +138,7 @@ $status = false;
 if (isset($_FILES['gambar'])) {
     $check = getimagesize($_FILES["gambar"]["tmp_name"]);
     if ($check !== false) {
-        $filename = md5(date("Y-m-d H:i:s")).getExtension($_FILES['gambar']['name']);
+        $filename = md5(date("Y-m-d H:i:s")).".".getExtension($_FILES['gambar']['name']);
         $blobClient = BlobRestProxy::createBlobService($connectionString);
         $blobClient->createBLockBlob("submission", $filename, fopen($_FILES["gambar"]["tmp_name"], "r"));
         $status = true;
